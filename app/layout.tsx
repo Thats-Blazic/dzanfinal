@@ -4,7 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'DZAN DESIGNS - Creative Agency & Branding Studio',
+  title: 'DZAN DESIGN - Branding Studio',
   description: 'Professional graphic design, branding, and web development services. We take brands from seen to unforgettable with creative solutions that drive results. Specializing in YouTube thumbnails, brand identity, logo design, and digital experiences.',
   keywords: 'graphic design, branding, logo design, YouTube thumbnails, web development, creative agency, brand identity, digital design, Serbia',
   authors: [{ name: 'DZAN DESIGNS' }],
@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   generator: 'Blazic',
   metadataBase: new URL('https://dzandesigns.com'),
   openGraph: {
-    title: 'DZAN DESIGNS - Creative Agency & Branding Studio',
+    title: 'DZAN DESIGN - Branding Studio',
     description: 'Professional graphic design, branding, and web development services. We take brands from seen to unforgettable with creative solutions that drive results.',
     url: 'https://dzandesigns.com',
     siteName: 'DZAN DESIGNS',
     images: [
       {
-        url: '/banner za sajta.png',
+        url: '/DzanDesigns brending/banercina.png',
         width: 1200,
         height: 630,
-        alt: 'DZAN DESIGNS - Creative Agency & Branding Studio',
+        alt: 'DZAN DESIGN - Branding Studio',
       },
     ],
     locale: 'en_US',
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DZAN DESIGNS - Creative Agency & Branding Studio',
+    title: 'DZAN DESIGN - Branding Studio',
     description: 'Professional graphic design, branding, and web development services. We take brands from seen to unforgettable.',
-    images: ['/banner za sajta.png'],
+    images: ['/DzanDesigns brending/banercina.png'],
     creator: '@dzandesigns',
   },
   robots: {
