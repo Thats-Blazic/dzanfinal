@@ -89,7 +89,7 @@ export default function CreativeAgency() {
                   href="/who-is-dzan"
                   className="text-white hover:text-white/80 transition-all duration-300 font-medium text-lg relative group cursor-pointer"
                 >
-                  Who is Dzan
+                  Who is Dzan?
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </div>
@@ -160,44 +160,47 @@ export default function CreativeAgency() {
 
       {/* Hero Section */}
       <section className="pt-20 min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        ></motion.div>
-        <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        ></motion.div>
-
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}></div>
+          <motion.div 
+            className="absolute inset-0"
+            animate={{
+              backgroundPosition: ['0px 0px', '50px 50px'],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+              `,
+              backgroundSize: '100px 100px'
+            }}
+          ></motion.div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div 
             className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
           >
             <motion.span 
-              className="inline-block px-6 py-2 bg-white/10 text-white font-semibold text-sm uppercase tracking-wider rounded-full mb-8"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-block px-6 py-2 bg-white/10 text-white font-semibold text-sm uppercase tracking-wider rounded-full mb-8 backdrop-blur-sm border border-white/20"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               Design/Branding/Direction
             </motion.span>
@@ -205,9 +208,9 @@ export default function CreativeAgency() {
           
           <motion.h1 
             className="text-5xl sm:text-7xl lg:text-9xl font-black text-white mb-8 leading-none tracking-tight"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.4, ease: "easeOut", delay: 0.3 }}
           >
             <span className="text-white/90">We take brands</span>
             <br />
@@ -215,60 +218,119 @@ export default function CreativeAgency() {
             <br />
             <motion.span 
               className="relative inline-block"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 1.2, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 1.5
               }}
             >
-              <span className="relative z-20 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <motion.span 
+                className="relative z-20 text-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ 
+                  duration: 1, 
+                  delay: 1.5
+                }}
+              >
                 unforgettable
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-white/30 to-gray-300/30 blur-md scale-105 -z-10"></span>
+              </motion.span>
+              
+              {/* Background Grid */}
+              <div className="absolute inset-0 -z-20 opacity-30">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '40px 40px'
+                }}></div>
+                <motion.div 
+                  className="absolute inset-0"
+                  animate={{
+                    backgroundPosition: ['0px 0px', '40px 40px'],
+                  }}
+                  transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '80px 80px'
+                  }}
+                ></motion.div>
+              </div>
+              
+              {/* Simple Moving Light Effect */}
+              <motion.div 
+                className="absolute inset-0 -z-10"
+                initial={{ x: "-100%", opacity: 0 }}
+                animate={{ x: "100%", opacity: [0, 0.6, 0] }}
+                transition={{ 
+                  duration: 4, 
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                  delay: 2.5
+                }}
+              >
+                <div className="w-32 h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full blur-sm"></div>
+              </motion.div>
             </motion.span>
           </motion.h1>
           
           <motion.p 
             className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.6, ease: "easeOut", delay: 0.6 }}
           >
             Creative solutions that deliver results. We scale brands by crafting memorable experiences through design, development, and strategic thinking that drives transformation.
           </motion.p>
           
           <motion.div 
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.8, ease: "easeOut", delay: 0.9 }}
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div 
+              whileHover={{ scale: 1.05, y: -2 }} 
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
               <Button
                 size="lg"
-                className="bg-white hover:bg-gray-100 text-black px-10 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-white/25 group"
+                className="bg-white hover:bg-gray-100 text-black px-10 py-6 text-lg font-semibold rounded-full transition-all duration-500 hover:shadow-2xl hover:shadow-white/25 group backdrop-blur-sm"
                 onClick={() => {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
                 Contact Us
                 <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  animate={{ x: [0, 6, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </motion.div>
               </Button>
             </motion.div>
             
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div 
+              whileHover={{ scale: 1.05, y: -2 }} 
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full transition-all duration-300 bg-transparent"
+                className="border-2 border-white text-white hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full transition-all duration-500 bg-transparent backdrop-blur-sm hover:shadow-xl hover:shadow-white/20"
                 onClick={() => {
                   document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -569,8 +631,8 @@ export default function CreativeAgency() {
                   whileHover={{ scale: 1.05 }}
                 >
                   <img
-                    src="/dzeki.jpg"
-                    alt="Jason Kajzer - Web & App Developer"
+                    src="/ognjen.jpg"
+                    alt="Ognjen - Web & App Developer"
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   />
                 </motion.div>
@@ -581,7 +643,7 @@ export default function CreativeAgency() {
                   <Code className="h-8 w-8 text-black" />
                 </motion.div>
               </div>
-              <h3 className="text-3xl font-bold mb-3 text-white">Jason Kajzer</h3>
+              <h3 className="text-3xl font-bold mb-3 text-white">Ognjen</h3>
               <p className="text-white/80 font-semibold mb-4 text-lg">Web & App Developer</p>
               <p className="text-gray-300 leading-relaxed text-lg">
                 Builds high-performance websites and applications that deliver exceptional user experiences and drive
@@ -651,8 +713,12 @@ export default function CreativeAgency() {
                     Dzan Design helped us increase our CTR by 21% with their strategic design approach. The results were immediate and impressive.
                   </p>
                   <div className="flex items-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl mr-6 group-hover:bg-gradient-to-br group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">ND</span>
+                    <div className="w-16 h-16 rounded-2xl mr-6 group-hover:scale-105 transition-all duration-500 overflow-hidden border-2 border-white/20 group-hover:border-white/40">
+                      <img
+                        src="/naucidizajn.jpg"
+                        alt="Nauci Dizajn"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <p className="text-white font-bold text-lg group-hover:text-white transition-colors duration-500">Nauci Dizajn</p>
@@ -672,8 +738,12 @@ export default function CreativeAgency() {
                     Working with Dzan Design saved us 40 hours per month. Their efficient workflow and attention to detail is unmatched.
                   </p>
                   <div className="flex items-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl mr-6 group-hover:bg-gradient-to-br group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">OM</span>
+                    <div className="w-16 h-16 rounded-2xl mr-6 group-hover:scale-105 transition-all duration-500 overflow-hidden border-2 border-white/20 group-hover:border-white/40">
+                      <img
+                        src="/ozoit media.jpg"
+                        alt="Ozoit Media"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <p className="text-white font-bold text-lg group-hover:text-white transition-colors duration-500">Ozoit Media</p>
@@ -693,8 +763,12 @@ export default function CreativeAgency() {
                     Our conversion rate increased by 35% after implementing their design recommendations. The ROI was incredible.
                   </p>
                   <div className="flex items-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl mr-6 group-hover:bg-gradient-to-br group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">TC</span>
+                    <div className="w-16 h-16 rounded-2xl mr-6 group-hover:scale-105 transition-all duration-500 overflow-hidden border-2 border-white/20 group-hover:border-white/40">
+                      <img
+                        src="/tibor.jpeg"
+                        alt="Tibor Čubrilo"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <p className="text-white font-bold text-lg group-hover:text-white transition-colors duration-500">Tibor Čubrilo</p>

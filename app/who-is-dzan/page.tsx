@@ -197,23 +197,30 @@ export default function WhoIsDzanPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
             >
-              <Link href="https://www.instagram.com/dzandesigns/">
-                <Button
-                  size="lg"
-                  className="bg-white hover:bg-gray-100 text-black px-10 py-6 text-lg font-semibold rounded-full"
-                >
-                  Start a Project →
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-white text-black hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full"
-                >
-                  Get in Touch
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                className="bg-white hover:bg-gray-100 text-black px-10 py-6 text-lg font-semibold rounded-full"
+                onClick={() => {
+                  // Scroll to contact section
+                  const contactSection = document.getElementById('contact-section');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Start a Project →
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-white text-black hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full"
+                onClick={() => {
+                  // Open email client
+                  window.location.href = 'mailto:dzan.dizajn@gmail.com?subject=Project Inquiry&body=Hi Džan,%0D%0A%0D%0AI would like to discuss a project with you.%0D%0A%0D%0APlease provide more details about your project requirements.%0D%0A%0D%0ABest regards,';
+                }}
+              >
+                Get in Touch
+              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -278,7 +285,7 @@ export default function WhoIsDzanPage() {
                     { name: "Adobe InDesign", icon: "/adobe/id.png" },
                     { name: "Adobe XD", icon: "/adobe/ad.png" },
                     { name: "Figma", icon: "/adobe/figma.png" },
-                    { name: "Canva Pro", icon: "/adobe/ps.png" }
+                    { name: "Lightroom", icon: "/adobe/lr.png" }
                   ].map((tool, index) => (
                     <div key={index} className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-4 py-3 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
                       <Image 
@@ -340,7 +347,7 @@ export default function WhoIsDzanPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-black">
+      <section id="contact-section" className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -357,42 +364,46 @@ export default function WhoIsDzanPage() {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
               whileHover={{ scale: 1.05 }}
             >
-              <Link href="https://www.instagram.com/dzandesigns/">
-                <Button
-                  size="lg"
-                  className="bg-white hover:bg-gray-100 text-black px-10 py-6 text-lg font-semibold rounded-full"
-                >
-                  Start Your Project →
-                </Button>
-              </Link>
-              <Link href="mailto:dzan.dizajn@gmail.com">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-white text-black hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full"
-                >
-                  <Mail className="mr-2 h-5 w-5" />
-                  Get in Touch
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                className="bg-white hover:bg-gray-100 text-black px-10 py-6 text-lg font-semibold rounded-full"
+                onClick={() => {
+                  // Open Instagram in new tab
+                  window.open('https://www.instagram.com/dzandesigns/', '_blank');
+                }}
+              >
+                Start Your Project →
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-white text-black hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full"
+                onClick={() => {
+                  // Open email client with pre-filled content
+                  window.location.href = 'mailto:dzan.dizajn@gmail.com?subject=Project Inquiry&body=Hi Džan,%0D%0A%0D%0AI would like to discuss a project with you.%0D%0A%0D%0APlease provide more details about your project requirements.%0D%0A%0D%0ABest regards,';
+                }}
+              >
+                <Mail className="mr-2 h-5 w-5" />
+                Get in Touch
+              </Button>
             </motion.div>
 
             <div className="flex justify-center space-x-8">
-              <Link
-                href="https://www.instagram.com/dzandesigns/"
-                className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300"
+              <button
+                onClick={() => window.open('https://www.instagram.com/dzandesigns/', '_blank')}
+                className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300 cursor-pointer"
               >
                 <Instagram className="h-6 w-6" />
                 <span>Instagram</span>
                 <ExternalLink className="h-4 w-4" />
-              </Link>
-              <Link
-                href="https://www.behance.net/dzandesign"
-                className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300"
+              </button>
+              <button
+                onClick={() => window.open('https://www.behance.net/dzandesign', '_blank')}
+                className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300 cursor-pointer"
               >
                 <span>Behance</span>
                 <ExternalLink className="h-4 w-4" />
-              </Link>
+              </button>
             </div>
           </motion.div>
         </div>
