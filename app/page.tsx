@@ -28,134 +28,119 @@ export default function CreativeAgency() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50">
+      <nav className="fixed top-0 w-full bg-black border-b border-gray-600 z-50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center">
+            {/* Left Navigation - Moved more to the left */}
+            <div className="hidden md:flex items-center space-x-6 ml-0">
+              <Link
+                href="/"
+                className="text-white font-medium text-base relative group cursor-pointer transition-all duration-300 hover:scale-105"
+              >
+                <span className="text-gray-400 italic group-hover:text-white transition-colors duration-300">01</span>
+                <span className="text-white italic ml-2 group-hover:text-gray-200 transition-colors duration-300">Home</span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <Link
+                href="/who-is-dzan"
+                className="text-gray-400 hover:text-white/80 transition-all duration-300 font-medium text-base relative group cursor-pointer hover:scale-105"
+              >
+                <span className="text-gray-400 italic group-hover:text-white transition-colors duration-300">02</span>
+                <span className="text-gray-400 italic ml-2 group-hover:text-white transition-colors duration-300">Who is DZAN?</span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </div>
+
+            {/* Center Logo - Perfectly Centered */}
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <Link href="/" className="flex items-center group transition-all duration-300 hover:scale-105">
                 <Image 
                   src="/Logo 1.3.png" 
-                  alt="DZAN DESIGNS Logo" 
-                  width={180} 
-                  height={60} 
-                  className="h-16 w-auto"
+                  alt="DZAN Logo" 
+                  width={280} 
+                  height={80} 
+                  className="h-20 w-auto transition-all duration-300 group-hover:brightness-110"
                 />
               </Link>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-center space-x-12">
-                <button
-                  onClick={() => {
-                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-white hover:text-white/80 transition-all duration-300 font-medium text-lg relative group cursor-pointer"
-                >
-                  Services
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-white hover:text-white/80 transition-all duration-300 font-medium text-lg relative group cursor-pointer"
-                >
-                  About
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </button>
-                <button
-                  onClick={() => {
-                    document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-white hover:text-white/80 transition-all duration-300 font-medium text-lg relative group cursor-pointer"
-                >
-                  Testimonials
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </button>
-                <button
-                  onClick={() => {
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-white hover:text-white/80 transition-all duration-300 font-medium text-lg relative group cursor-pointer"
-                >
-                  Contact
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </button>
-
-                <Link
-                  href="/who-is-dzan"
-                  className="text-white hover:text-white/80 transition-all duration-300 font-medium text-lg relative group cursor-pointer"
-                >
-                  Who is Dzan?
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </div>
+            {/* Right Section - Mobile Menu Button */}
+            <div className="md:hidden">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={toggleMenu} 
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
+              >
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="h-6 w-6" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="h-6 w-6" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Button>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={toggleMenu} className="text-white hover:text-white/80">
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
+            {/* Right Spacer for Desktop - Hidden since logo is absolutely positioned */}
+            <div className="hidden md:flex items-center space-x-6">
+              <div className="w-32"></div>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-black/95 backdrop-blur-md">
-            <div className="px-4 pt-2 pb-6 space-y-4">
-              <button
-                onClick={() => {
-                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                  toggleMenu();
-                }}
-                className="block w-full text-left px-4 py-3 text-white hover:text-white/80 transition-colors duration-200 font-medium text-lg cursor-pointer"
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-600"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <motion.div 
+                className="px-4 pt-4 pb-6 space-y-2"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
               >
-                Services
-              </button>
-
-              <button
-                onClick={() => {
-                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-                  toggleMenu();
-                }}
-                className="block w-full text-left px-4 py-3 text-white hover:text-white/80 transition-colors duration-200 font-medium text-lg cursor-pointer"
-              >
-                About
-              </button>
-              <button
-                onClick={() => {
-                  document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
-                  toggleMenu();
-                }}
-                className="block w-full text-left px-4 py-3 text-white hover:text-white/80 transition-colors duration-200 font-medium text-lg cursor-pointer"
-              >
-                Testimonials
-              </button>
-              <button
-                onClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                  toggleMenu();
-                }}
-                className="block w-full text-left px-4 py-3 text-white hover:text-white/80 transition-colors duration-200 font-medium text-lg cursor-pointer"
-              >
-                Contact
-              </button>
-
-              <Link
-                href="/who-is-dzan"
-                onClick={toggleMenu}
-                className="block w-full text-left px-4 py-3 text-white hover:text-white/80 transition-colors duration-200 font-medium text-lg cursor-pointer"
-              >
-                Who is Dzan
-              </Link>
-            </div>
-          </div>
-        )}
+                <Link
+                  href="/"
+                  onClick={toggleMenu}
+                  className="block w-full text-left px-4 py-3 text-white hover:text-gray-200 transition-all duration-200 font-medium text-lg cursor-pointer hover:bg-white/10 rounded-lg group"
+                >
+                  <span className="text-gray-400 italic group-hover:text-white transition-colors duration-200">01</span>
+                  <span className="text-white italic ml-2 group-hover:text-white transition-colors duration-200">Home</span>
+                </Link>
+                <Link
+                  href="/who-is-dzan"
+                  onClick={toggleMenu}
+                  className="block w-full text-left px-4 py-3 text-white hover:text-gray-200 transition-all duration-200 font-medium text-lg cursor-pointer hover:bg-white/10 rounded-lg group"
+                >
+                  <span className="text-gray-400 italic group-hover:text-white transition-colors duration-200">02</span>
+                  <span className="text-gray-400 italic ml-2 group-hover:text-white transition-colors duration-200">Who is DZAN?</span>
+                </Link>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
@@ -207,14 +192,14 @@ export default function CreativeAgency() {
           </motion.div>
           
           <motion.h1 
-            className="text-5xl sm:text-7xl lg:text-9xl font-black text-white mb-8 leading-none tracking-tight"
-            initial={{ opacity: 0, y: 60, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1.4, ease: "easeOut", delay: 0.3 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-black mb-12 leading-none tracking-tight max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
           >
-            <span className="text-white/90">We take brands</span>
+            <span className="text-white">We take brands</span>
             <br />
-            <span className="text-white/60">from seen to</span>
+            <span className="text-gray-600">from seen to</span>
             <br />
             <motion.span 
               className="relative inline-block"
@@ -238,49 +223,81 @@ export default function CreativeAgency() {
                 unforgettable
               </motion.span>
               
-              {/* Background Grid */}
-              <div className="absolute inset-0 -z-20 opacity-30">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `
-                    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '40px 40px'
-                }}></div>
+              {/* Glowing Light Effect Behind Text */}
+              <motion.div 
+                className="absolute inset-0 -z-10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  duration: 1.5, 
+                  delay: 2
+                }}
+              >
+                {/* Main Glow - Soft and Blurred */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/20 rounded-full blur-3xl"></div>
+                
+                {/* Animated Light Rays - Soft Rotation */}
                 <motion.div 
                   className="absolute inset-0"
                   animate={{
-                    backgroundPosition: ['0px 0px', '40px 40px'],
+                    rotate: [0, 360],
+                    scale: [1, 1.1, 1],
                   }}
                   transition={{
-                    duration: 15,
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent blur-3xl"></div>
+                </motion.div>
+                
+                {/* Pulsing Core Light - Soft Blur */}
+                <motion.div 
+                  className="absolute inset-0 bg-white/10 rounded-full blur-3xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                ></motion.div>
+                
+                {/* Moving Light Particles - Soft Radial */}
+                <motion.div 
+                  className="absolute inset-0"
+                  animate={{
+                    backgroundPosition: ['0% 0%', '100% 100%'],
+                  }}
+                  transition={{
+                    duration: 6,
                     repeat: Infinity,
                     ease: "linear"
                   }}
                   style={{
                     backgroundImage: `
-                      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+                      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)
                     `,
-                    backgroundSize: '80px 80px'
+                    backgroundSize: '200% 200%'
                   }}
                 ></motion.div>
-              </div>
+              </motion.div>
               
-              {/* Simple Moving Light Effect */}
+              {/* Subtle Text Shadow - Extra Soft */}
               <motion.div 
-                className="absolute inset-0 -z-10"
-                initial={{ x: "-100%", opacity: 0 }}
-                animate={{ x: "100%", opacity: [0, 0.6, 0] }}
+                className="absolute inset-0 -z-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ 
-                  duration: 4, 
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 3,
+                  duration: 1, 
                   delay: 2.5
                 }}
               >
-                <div className="w-32 h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 blur-3xl"></div>
               </motion.div>
             </motion.span>
           </motion.h1>
@@ -339,6 +356,83 @@ export default function CreativeAgency() {
               </Button>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Brands Section - Scrolling Brands */}
+      <section className="py-20 bg-black relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.span 
+              className="inline-block px-6 py-2 bg-white/10 text-white font-semibold text-sm uppercase tracking-wider rounded-full mb-8 backdrop-blur-sm border border-white/20"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Our Partners
+            </motion.span>
+            <motion.h2 
+              className="text-4xl sm:text-5xl font-black text-white mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Brands We Work With
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Trusted by leading companies across various industries. We collaborate with brands that share our vision for excellence.
+            </motion.p>
+          </div>
+        </div>
+
+        {/* Horizontal Line Separator */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mb-16"></div>
+
+        {/* Scrolling Brands - Moving Right to Left */}
+        <div className="relative overflow-hidden">
+          <motion.div 
+            className="flex items-center space-x-12"
+            animate={{ x: [0, -600] }}
+            transition={{ 
+              duration: 30, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          >
+            {/* Duplicate image for seamless loop */}
+            {[...Array(3)].map((_, i) => (
+              <div key={`brands-${i}`} className="flex-shrink-0">
+                <Image 
+                  src="/sponzori.png" 
+                  alt="Brands We Work With" 
+                  width={500} 
+                  height={120} 
+                  className="h-20 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Fade Effects on Sides */}
+        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
+
+        {/* Navigation Dots */}
+        <div className="flex justify-center mt-12 space-x-3">
+          <div className="w-3 h-3 border-2 border-white rounded-full flex items-center justify-center">
+            <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
+          <div className="w-3 h-3 border-2 border-gray-600 rounded-full"></div>
+          <div className="w-3 h-3 border-2 border-gray-600 rounded-full"></div>
         </div>
       </section>
 

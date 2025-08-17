@@ -176,7 +176,7 @@ export default function GraphicDesignPage() {
     {
       title: "Website Banner Design",
       category: "Marketing Materials",
-      image: "/DzanDesigns brending/banner za sajta.png",
+      image: "/DzanDesigns brending/banercina.png",
       description: "Professional website banner with modern design elements and brand consistency.",
       features: ["Banner Design", "Marketing", "Web Design", "Brand Guidelines"]
     },
@@ -558,7 +558,7 @@ export default function GraphicDesignPage() {
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -572,49 +572,22 @@ export default function GraphicDesignPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
+                whileHover={{ scale: 1.02 }}
                 onClick={() => window.open(project.image, '_blank')}
               >
-                <Card className="bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-500 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-white/10">
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden">
-                      <motion.div 
-                        className="aspect-[16/9]"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
-                      </motion.div>
-                      <div className="absolute top-4 left-4">
-                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/30">
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.features.slice(0, 3).map((feature, featureIndex) => (
-                          <span
-                            key={featureIndex}
-                            className="inline-block px-2 py-1 bg-white/10 text-white text-xs rounded-full"
-                          >
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="aspect-[16/9]"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
